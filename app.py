@@ -545,7 +545,8 @@ st.write(f"Probability of Churn: **{100*proba:.2f}%**")
 #st.subheader("Explanation")
 
 # Compute SHAP values
-explainer = shap.TreeExplainer(model)
+explainer = shap.TreeExplainer(model, X, feature_perturbation='interventional')#conditional distribution
+#explainer = shap.TreeExplainer(model)#marginal distribution
 shap_values = explainer.shap_values(input_df)
 
 #Extract Top Features Contributing to the Prediction
